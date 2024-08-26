@@ -2,8 +2,8 @@
   "$schema": "https://mintlify.com/schema.json",
   "name": "Miru",
   "logo": {
-    "dark": "/logo/dark.png",
-    "light": "/logo/light.png"
+    "dark": "/logo/light.png",
+    "light": "/logo/dark.png"
   },
   "favicon": "/miru-favicon.svg",
   "colors": {
