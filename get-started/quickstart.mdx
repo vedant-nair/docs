@@ -17,39 +17,11 @@ with **NVIDIA Jetson** running **Jetpack** and **Raspberry Pi 4 Model B** runnin
 For requests for other devices/OS support, please [reach out to a founder](mailto:vedant@miruml.com).
 
 
-
-{/* 
-
-Section: Connect  Github
-
-Accordion: Install the Github App
-Accordion: Create a Github Source
-
-Section: Use the Miru Web App
-
-Accordion: Create a Device Group
-Accordion: Creating a Device
-
-Section: Install the Miru Agent
-
-Accordion: Install Miru
-Accordion: Install/Upgrade Docker
-Accordion: Authenticate your Device
-
-Section: Deploy an Update
-
-Accordion: Prepare your Deployment
-Accordion: Use Docker Compose
-Accordion: Deploy your Application
-
-*/}
-
-
-### Connect to Github
+### Connect to Github 
 
 <AccordionGroup>
 
-  <Accordion icon = 'github' title = 'Install the Github App'>
+  <Accordion icon = 'github' title = 'Install the Github App' id = 'install-github-app'>
 
   Miru integrates with your GitHub account for a seamless deployment experience.
   While you may connect any repositories of your choosing, this guide will walk
@@ -88,7 +60,7 @@ Accordion: Deploy your Application
   <img height="200" src="/images/selecting-repos.png" />
 
   </Accordion>
-  <Accordion icon = 'github' title = 'Create a Github Source'>
+  <Accordion icon = 'github' title = 'Create a Github Source' id = 'create-github-source'>
  
 
   After the installation completes, you'll be redirected to the
@@ -109,8 +81,8 @@ Accordion: Deploy your Application
   As we'll see, GitHub Sources can be associated with one or more **Device
   Groups**, allowing you to easily deploy your code to a group of devices. The
   deployment process using docker-compose files will be detailed in the [Deploy
-  with Docker Compose](https://www.notion.so/Miru-Docs-Getting-Started-f652cc005b884e9bad23d778196ffc0e?pvs=21)
-  section (***PLEASE FIX needs Mintlify link***). For now, we'll focus on connecting our GitHub.
+  with Docker Compose](#use-docker-compose)
+  section. For now, we'll focus on connecting our GitHub.
 
   To create a GitHub source, click the **Source** button, fill in the fields,
   and click **Create Source**. We'll set up our GitHub source to track the
@@ -128,7 +100,7 @@ Accordion: Deploy your Application
 ### Use the Miru Web Application
 <AccordionGroup>
 
-  <Accordion icon="layer-group" title="Create a Device Group">
+  <Accordion icon="layer-group" title="Create a Device Group" id = 'create-a-device-group'>
     Navigate to the devices page and create a Device Group. Device Groups are a
     convenient way to organize your devices. You might create a group for a
     specific functionality, different customers, a set of test devices, etc.
@@ -145,13 +117,13 @@ Accordion: Deploy your Application
 
     
   
-    
+  
   
   
   
     </Accordion>
 
-  <Accordion icon="robot" title="Create a Device">
+  <Accordion icon="robot" title="Create a Device" id = 'create-a-device'>
 
   To add a device, click into the Device Group and select the Device button in
     the top right corner. You'll be prompted to name your device and choose the
@@ -167,7 +139,7 @@ Accordion: Deploy your Application
 
 <AccordionGroup>
 
-  <Accordion icon="instalod" title="Install Miru">
+  <Accordion icon="instalod" title="Install Miru" id = 'install-miru'>
 
   Installing Miru onto your device takes ~ 3 minutes.  The only dependencies for Miru are `docker`, `docker compose`, and `miru`. If you don't have `docker` or `docker compose` installed already don't worry, Miru will handle the installation for you! 
 
@@ -187,10 +159,11 @@ Accordion: Deploy your Application
     {/* Toggle for curl installation instructions */}
     <Accordion icon="rectangle-terminal" title="If `curl` is not installed">
       Install it with the following two commands:
-      ```
+      
+      ```bash
       sudo apt-get update
       ```
-      ```
+      ```bash
       sudo apt-get install curl
       ```
 
@@ -207,7 +180,7 @@ Accordion: Deploy your Application
     
     </Accordion>
   </Accordion>
-  <Accordion icon="docker" title="Install/Upgrade Docker">
+  <Accordion icon="docker" title="Install/Upgrade Docker" id = 'install-docker'>
       If you don't have docker installed already, don't worry; Miru will handle the installation for you. First, select the OS your device is running on. Currently, Miru only supports Ubuntu.
 
       <pre><code className="language-bash">
@@ -227,15 +200,15 @@ Accordion: Deploy your Application
       \ Testing Docker Installation
       </code></pre>
 
-      If Docker is not installed or is not compatible with `miru`, you’ll be asked to let the `miru` installer install/upgrade Docker for you. This is done using [this bash script](https://www.notion.so/Docker-Installation-Script-for-Ubuntu-060d9037f8b44a4b98cba14ef6b958f1?pvs=21), which executes the [Official Docker Installation Instructions for Ubuntu](https://docs.docker.com/engine/install/ubuntu/). 
-      If you’re upgrading your Docker installation, existing Docker resources (containers, images, networks, etc.) **will be left untouched** and will continue running after the installation is complete.
+      If Docker is not installed or is not compatible with `miru`, you'll be asked to let the `miru` installer install/upgrade Docker for you. This is done using [this bash script](https://www.notion.so/Docker-Installation-Script-for-Ubuntu-060d9037f8b44a4b98cba14ef6b958f1?pvs=21), which executes the [Official Docker Installation Instructions for Ubuntu](https://docs.docker.com/engine/install/ubuntu/). 
+      If you're upgrading your Docker installation, existing Docker resources (containers, images, networks, etc.) **will be left untouched** and will continue running after the installation is complete.
       {/* TODO: Should I make this on a Mintlify page?*/}
       Once the bash script completes, the `miru` installer will again test if the Docker installation is compatible (which it should be), after which it will automatically move on to authenticating your device. 
 
   </Accordion>
 
-  <Accordion icon="key" title="Authenticate your Device">
-    To authenticate your device, navigate to the group your device lives in and select the device you want to authenticate. Click the key icon at the far right of the device’s row to retrieve its authentication token.
+  <Accordion icon="key" title="Authenticate your Device" id = 'authenticate-device'>
+    To authenticate your device, navigate to the group your device lives in and select the device you want to authenticate. Click the key icon at the far right of the device's row to retrieve its authentication token.
 
     <img height="200" src="/images/authenticate.png" />
 
@@ -263,61 +236,60 @@ Accordion: Deploy your Application
 
 <AccordionGroup>
 
-  <Accordion icon="check" title="Prepare your Deployment">
+  <Accordion icon="check" title="Prepare your Deployment" id = 'prepare-deployment'>
     Miru utilizes [Docker Compose](https://docs.docker.com/compose/) to deploy your containers. To test a Miru deployment with your device, you can use the **miru-examples** repository you forked earlier from the [Miru Example Repository](https://github.com/miruml/demo) in the **Connect to GitHub** section.
 
-    Open up your **development machine**. This should be a computer that has push access to your GitHub account. We recommend using a computer different from the device you installed Miru onto. Although, you could use the same device if that’s all you have access to.
+    Open up your **development machine**. This should be a computer that has push access to your GitHub account. We recommend using a computer different from the device you installed Miru onto. Although, you could use the same device if that's all you have access to.
 
-    We’ll walk through a deployment by just pushing a change to GitHub. A simple push will trigger a new deployment to your device with Miru. This is because we specified the device’s group to track the main branch and /todo/ build path of your miru-examples repository in the **Create a Device** section.
-    {/* TODO: Figure out how to hyperlink these sections to other parts of the page once you've published*/}
+    We'll walk through a deployment by just pushing a change to GitHub. A simple push will trigger a new deployment to your device with Miru. This is because we specified the device's group to track the main branch and /todo/ build path of your miru-examples repository in the [Create a Device](#create-a-device) section.
+
     This setup allows Miru to automatically deploy your changes to your device.
 
     #### Prepare your Deployment
 
   First clone your ***miru-examples*** repository.
 
-  ```
+  ``` bash
     git clone YOUR-MIRU-EXAMPLE-REPOSITORY-URL
     # e.g. https/your-username/miru-examples
   ```
 
   Navigate inside the ***miru-examples*** directory.
 
-  ```
+  ``` bash
   cd miru-examples
   ```
 
   Your directory structure should look similar to the following:
 
-  ```
+  ```plaintext
   miru-examples/
-├── todo/
-│ ├── ...
-└── simple-torch/
-│ ├── ...
-├── ...
+  ├── todo/
+  │   └── ...
+  ├── simple-torch/
+  │   └── ...
+  └── ...
   ```
 
-  Open the **/todo** directory in your favorite code editor to examine the code and containers that will be deployed onto your device. While there are other folders within the miru-examples repository, we setup the Device Group to only look at the **todo** folder by specifying the build path as /**todo** when creating the Device Group.
-  {/*TODO: Hyperlink 'creating the Device Group'*/}
+  Open the **/todo** directory in your favorite code editor to examine the code and containers that will be deployed onto your device. While there are other folders within the miru-examples repository, we setup the Device Group to only look at the **todo** folder by specifying the build path as /**todo** when [creating the Device Group](#create-a-device-group).
+ 
 
   The todo folder has the following structure:
 
+  ```plaintext
+  miru-examples/
+  ├── todo/
+  │ ├── ...
+  └── simple-torch/
+  │ ├── ...
+  ├── ...
   ```
-  todo/
-├── compose.yaml
-├── backend/
-│   ├── Dockerfile
-│   ├── ...
-└── frontend/
-    ├── Dockerfile
-    ├── ...
-  ```
+ 
 
   In the next section we'll learn how to use **Docker Compose** with Miru.
   </Accordion>
 
-  <Accordion icon="docker" title="Use Docker Compose">
+<Accordion icon="docker" title="Use Docker Compose" id = 'use-docker-compose'>
     The first (and maybe most important) file is the `compose.yaml` file. This specifies what docker services (containers) to run, how they should interact with the host machine, and how to build or pull the images these services will run. 
   
     <Accordion icon="rectangle-terminal" title="`compose.yaml`">
@@ -384,9 +356,9 @@ volumes:
 
     The `frontend.build` parameters specify where the Dockerfile for this service is located in the filesystem and any information required to build the Docker image. 
 
-    The `frontend.build.context` parameter tells Docker Compose to look inside the **frontend** directory that is located within the parent directory of the **compose.yaml** file’s parent directory. For example, since the compose.yaml file’s path is **/todo/compose.yaml**, Docker Compose will look for a Dockerfile at **/todo/frontend/Dockerfile**.
+    The `frontend.build.context` parameter tells Docker Compose to look inside the **frontend** directory that is located within the parent directory of the **compose.yaml** file's parent directory. For example, since the compose.yaml file's path is **/todo/compose.yaml**, Docker Compose will look for a Dockerfile at **/todo/frontend/Dockerfile**.
 
-    Similarly, the **backend** service’s build specification is:
+    Similarly, the **backend** service's build specification is:
 
     ```
       backend:
@@ -394,19 +366,19 @@ volumes:
          context: backend
          target: development
     ```
-    So Docker Compose will look for the backend service’s Dockerfile at **/todo/backend/Dockerfile**. If you look within these folders you’ll find Dockerfiles in each of them. 
+    So Docker Compose will look for the backend service's Dockerfile at `/todo/backend/Dockerfile`. If you look within these folders you'll find Dockerfiles in each of them.
 
-    ```
+    ```plaintext
     todo/
-├── compose.yaml
-├── backend/
-│   ├── Dockerfile
-│   ├── ...
-└── frontend/
-    ├── Dockerfile
-    ├── ...
+    │
+    ├── compose.yaml
+    ├── backend/
+    │   ├── Dockerfile
+    │   └── ...
+    └── frontend/
+        ├── Dockerfile
+        └── ...
     ```
-
     The Dockerfiles specify how to build their respective service (frontend or backend) into a [Docker image](https://docs.docker.com/build/). This process is crucial for creating a consistent and reproducible environment for the application.
 
     The **mongo** service is the last service defined in the compose.yaml file. Notably, it does not have a build parameter. Instead, it uses an image parameter ([mongo:4.2.0](https://hub.docker.com/_/mongo)) to specify the Docker image to pull from Docker Hub. This approach ensures that the service uses a specific version of the MongoDB image.
@@ -422,8 +394,8 @@ volumes:
     <img height="200" src="/images/todo-app.png" />
   </Accordion>
 
-  <Accordion icon="play" title="Deploy your Application">
-    Now that our application is ready, we’ll navigate back to our **miru-examples** repository, add a change, and push to GitHub.
+  <Accordion icon="play" title="Deploy your Application" id = 'deploy-application'>
+    Now that our application is ready, we'll navigate back to our **miru-examples** repository, add a change, and push to GitHub.
 
     ```
     # This is an arbitrary change to push a new commit to GitHub
@@ -432,7 +404,7 @@ volumes:
     git add .
     git commit -m "Test Miru deployment"
     ```
-    Upon pushing to GitHub, Miru receives the push event and begins building your containers on our servers. You’ll be able to see the progress of this **Deployment** on your **DeviceGroup** page.
+    Upon pushing to GitHub, Miru receives the push event and begins building your containers on our servers. You'll be able to see the progress of this **Deployment** on your **DeviceGroup** page.
 
     Your deployment will transition through 7 different states before being deployed to your device.
 
@@ -452,15 +424,15 @@ volumes:
 
   <img height="200" src="/images/staging-popup.png" />
   
-  Double-click on your target device to get information about the deployment that you’ve just initiated.
+  Double-click on your target device to get information about the deployment that you've just initiated.
 
   <img height="200" src="/images/devices-list.png" />
   
-  In the **Device Details** page, you’ll see the status of your device and the queued deployment.
+  In the **Device Details** page, you'll see the status of your device and the queued deployment.
   
   <img height="200" src="/images/device-details.png" />
 
-  Once it’s finished deploying, the deployment status will change to **active**. This means the device has successfully installed the new containers!
+  Once it's finished deploying, the deployment status will change to **active**. This means the device has successfully installed the new containers!
 
   <img height="200" src="/images/active-deployment.png" />
 
@@ -468,10 +440,10 @@ volumes:
 
   <img height="200" src="/images/containers.png" />
 
-  So far, we’ve just deployed to one Device Group with one device. However, you can add many devices to a Device Group, and Device Groups may have a many-to-many relationship with GitHub Sources. Device Groups can have multiple GitHub Sources, and a GitHub Source can belong to multiple Device Groups.
+  So far, we've just deployed to one Device Group with one device. However, you can add many devices to a Device Group, and Device Groups may have a many-to-many relationship with GitHub Sources. Device Groups can have multiple GitHub Sources, and a GitHub Source can belong to multiple Device Groups.
   </Accordion>
 
-  <Accordion icon="magnifying-glass" title="Verify your Deployment">
+  <Accordion icon="magnifying-glass" title="Verify your Deployment" id = 'verify-deployment'>
   To see the deployment on your device, open the terminal on your device and view the containers on your device.
 
   ```
@@ -486,11 +458,11 @@ volumes:
 a9248d812f66   008971674194.dkr.ecr.us-east-1.amazonaws.com/backend-47:05acb0845046f7cb42116fb7a22978762a4c8ceb    "docker-entrypoint.s…"   2 days ago     Restarting (1) 18 seconds ago                                               miru-todo-backend-1
 2d231e06c705   mongo                                                                                               "docker-entrypoint.s…"   2 days ago     Up 21 minutes                   27017/tcp                                   miru-todo-mongo-1
   ```
-  If you have access to your device’s browser you can navigate to localhost and view the Todo application running on your device.
+  If you have access to your device's browser you can navigate to localhost and view the Todo application running on your device.
   
   <img height="200" src="/images/todo-verify.png" />
 
-  **Congratulations!** You’ve made your first OTA deployment with Miru.
+  **Congratulations!** You've made your first OTA deployment with Miru.
   </Accordion>
 
 </AccordionGroup>
@@ -498,80 +470,3 @@ a9248d812f66   008971674194.dkr.ecr.us-east-1.amazonaws.com/backend-47:05acb0845
 
 
 
-{/* ### Edit and preview
-
-<AccordionGroup>
-  <Accordion icon="github" title="Clone your docs locally">
-    During the onboarding process, we created a repository on your Github with
-    your docs content. You can find this repository on our
-    [dashboard](https://dashboard.mintlify.com). To clone the repository
-    locally, follow these
-    [instructions](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
-    in your terminal.
-  </Accordion>
-  <Accordion icon="rectangle-terminal" title="Preview changes">
-    Previewing helps you make sure your changes look as intended. We built a
-    command line interface to render these changes locally. 1. Install the
-    [Mintlify CLI](https://www.npmjs.com/package/mintlify) to preview the
-    documentation changes locally with this command: ``` npm i -g mintlify ```
-    2. Run the following command at the root of your documentation (where
-    `mint.json` is): ``` mintlify dev ```
-  </Accordion>
-</AccordionGroup>
-
-### Deploy your changes
-
-<AccordionGroup>
-
-<Accordion icon="message-bot" title="Install our Github app">
-  Our Github app automatically deploys your changes to your docs site, so you
-  don't need to manage deployments yourself. You can find the link to install on
-  your [dashboard](https://dashboard.mintlify.com). Once the bot has been
-  successfully installed, there should be a check mark next to the commit hash
-  of the repo.
-</Accordion>
-<Accordion icon="rocket" title="Push your changes">
-  [Commit and push your changes to
-  Git](https://docs.github.com/en/get-started/using-git/pushing-commits-to-a-remote-repository#about-git-push)
-  for your changes to update in your docs site. If you push and don't see that
-  the Github app successfully deployed your changes, you can also manually
-  update your docs through our [dashboard](https://dashboard.mintlify.com).
-</Accordion>
-
-</AccordionGroup>
-
-## Update your docs
-
-Add content directly in your files with MDX syntax and React components. You can use any of our components, or even build your own.
-
-<CardGroup>
-
-<Card title="Style Your Docs" icon="paintbrush" href="/settings/global">
-  Add flair to your docs with personalized branding.
-</Card>
-
-<Card
-  title="Add API Endpoints"
-  icon="square-code"
-  href="/api-playground/configuration"
->
-  Implement your OpenAPI spec and enable API user interaction.
-</Card>
-
-<Card
-  title="Integrate Analytics"
-  icon="chart-mixed"
-  href="/analytics/supported-integrations"
->
-  Draw insights from user interactions with your documentation.
-</Card>
-
-<Card
-  title="Host on a Custom Domain"
-  icon="browser"
-  href="/settings/custom-domain/subdomain"
->
-  Keep your docs on your own website's subdomain.
-</Card>
-
-</CardGroup> */}
